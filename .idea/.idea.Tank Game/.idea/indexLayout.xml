@@ -16,9 +16,22 @@
     <explicitExcludes>
       <Path>.git</Path>
       <Path>.idea</Path>
+      <Path>Etusivu</Path>
       <Path>Library</Path>
       <Path>Logs</Path>
+      <Path>Loppu</Path>
+      <Path>Taso 1</Path>
+      <Path>Taso 10</Path>
+      <Path>Taso 2</Path>
+      <Path>Taso 3</Path>
+      <Path>Taso 4</Path>
+      <Path>Taso 5</Path>
+      <Path>Taso 6</Path>
+      <Path>Taso 7</Path>
+      <Path>Taso 8</Path>
+      <Path>Taso 9</Path>
       <Path>Temp</Path>
+      <Path>Tutoriaali</Path>
       <Path>obj</Path>
     </explicitExcludes>
   </component>
