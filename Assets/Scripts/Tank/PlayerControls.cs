@@ -52,6 +52,10 @@ public class PlayerControls : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate() // 
     {
+        
+        Vector3 currentRotation = rb.transform.eulerAngles;
+        rb.rotation = Quaternion.Euler(0f, currentRotation.y, 0f);    // tank is allowed to rotate only around y-axis  --> prevents from rolling over
+        
         float inputHorizontal = Input.GetAxis("Horizontal");
         float inputVertical = Input.GetAxis("Vertical");
 
