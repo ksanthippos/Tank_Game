@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -12,6 +13,7 @@ public class Projectile : MonoBehaviour
     public float damage;
 
     public string shooterTag;
+    public GameObject explosion;
 
     private Rigidbody rb;
     private float t;
@@ -36,6 +38,18 @@ public class Projectile : MonoBehaviour
 
     private void Explode()
     {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
+
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            Health health = colliders[i].GetComponent<Health>();
+            if (health != null)
+            {
+                health.reduceHealth(damage);
+            }
+        }
+
+        Instantiate(explosion, transform.position, new Quaternion());
         Destroy(gameObject);
     }
 

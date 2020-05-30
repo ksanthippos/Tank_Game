@@ -445,6 +445,7 @@ GameObject:
   - component: {fileID: 485491201}
   - component: {fileID: 485491202}
   - component: {fileID: 485491203}
+  - component: {fileID: 485491204}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Player
@@ -519,6 +520,19 @@ MonoBehaviour:
   muzzle: {fileID: 169689681}
   projectile: {fileID: 6167129411952547735, guid: b0c978b738549ed4fb5517c0941d4029,
     type: 3}
+--- !u!114 &485491204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485491199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 861cef6d831789f42ac29c8069c40e55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 3
 --- !u!1 &557111015
 GameObject:
   m_ObjectHideFlags: 0
