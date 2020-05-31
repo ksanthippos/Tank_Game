@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,6 +17,13 @@ public class GameController : MonoBehaviour
     private int currentEnemyAmount;
     private GameObject player;
     
+    public static GameController instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     void Start()
     {
         for (int i = 0; i < enemyStartingAmount; i++)
@@ -23,23 +31,47 @@ public class GameController : MonoBehaviour
             spawner.SpawnEnemy();
         }
         
-        
-        
-        spawner.SpawnPlayer();
+        player = spawner.SpawnPlayer();
         
         score = 0f;
         currentLives = lives;
         currentEnemyAmount = enemyStartingAmount;
     }
-
-    public void addScore()
-    {
-        score += scorePerTank;
-    }
     
     // Update is called once per frame
     void Update()
     {
+        if (currentLives > 0)
+        {
+            if (Input.GetButtonDown("Restart"))
+            {
+                if (player != null)
+                {
+                    player = spawner.SpawnPlayer();
+                    currentLives--;
+                }
+            }    
+        }
         
     }
+
+    public void EnemyDestroyed()
+    {
+        spawner.SpawnEnemy();
+        score += scorePerTank;
+        if (currentEnemyAmount < maxEnemiesAmount)
+        {
+            spawner.SpawnEnemy();
+            currentEnemyAmount++;
+        }
+    }
+
+    public void SetHealth(float current, float max)
+    {
+        if (current < 0)
+        {
+            current = 0f;
+        }
+    }
+
 }

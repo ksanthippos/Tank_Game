@@ -8,16 +8,20 @@ public class Follow : MonoBehaviour
     public Transform target;    // what is followed
     public Vector3 offset;    // how far target is followed
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-        
-    }
+    private GameObject player;
 
+    
     // Update is called once per frame
     void Update()
     {
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
+        else
+        {
+            target = player.transform;
+        }
         transform.position = target.position + offset;
     }
 }
