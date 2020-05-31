@@ -22,6 +22,7 @@ public class PlayerControls : MonoBehaviour
     private int floorMask;
     private float t;
     
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +30,7 @@ public class PlayerControls : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         mainCamera = Camera.main;
         floorMask = LayerMask.GetMask("Floor");
+        
     }
 
     private void Update()
