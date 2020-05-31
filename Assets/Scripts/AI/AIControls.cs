@@ -54,6 +54,8 @@ public class AIControls : MonoBehaviour
     
     private void FixedUpdate()
     {
+        t -= Time.deltaTime;
+        
         Vector3 currentRotation = rb.transform.eulerAngles;
         rb.rotation = Quaternion.Euler(0f, currentRotation.y, 0f);    // tank is allowed to rotate only around y-axis  --> prevents from rolling over
         
@@ -75,7 +77,14 @@ public class AIControls : MonoBehaviour
                 // LoS check: there are no obstacles between enemy and player 
                 if (!Physics.Linecast(transform.position, targetObject.transform.position, obstacleMask))
                 {
-                    target = targetObject.transform.position;          
+                    // set target and fire
+                    target = targetObject.transform.position;
+                    if (t < 0)
+                    {
+                        GameObject proj = Instantiate(projectile, muzzle.position, muzzle.rotation);
+                        proj.GetComponent<Projectile>().shooterTag = tag;
+                        t = shootingCooldown;    
+                    }
                     
                     // check if player is too close --> stop movement to prevent explosion damage
                     if (Vector3.Distance(target, transform.position) < stoppingRange)
@@ -127,33 +136,31 @@ public class AIControls : MonoBehaviour
             stringState = "left";
             Turning((-1f));
             Move(1f);
-            
         }
         else if (state == State.right)
         {
             stringState = "right";
             Turning(1f);
             Move(1f);
-            
         }
         else if (state == State.back)
         {
             stringState = "back";
             Move(-1f);
             nextState = State.forward;
-
         }
         else if (state == State.stop)
         {
             stringState = "stop";
             Move(0f);
             nextState = State.forward;
-  
         }
         
-        
-
-
+        // turret turning towards target
+        Vector3 targetDirection = target - turret.position;
+        targetDirection.y = 0f;
+        Vector3 turningDirection = Vector3.RotateTowards(turret.forward, targetDirection, turretTurningSpeed * Time.deltaTime, 0f);
+        turret.rotation = Quaternion.LookRotation(turningDirection);
 
     }
 
