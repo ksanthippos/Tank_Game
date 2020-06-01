@@ -64,7 +64,7 @@ public class UIController : MonoBehaviour
             pauseMenu.SetActive(false);
             Time.timeScale = 1f;    // normal time
         }
-        else
+        else if (!endScreen.activeInHierarchy && !respawnScreen.activeInHierarchy)
         {
             pauseMenu.SetActive(true);
             Time.timeScale = 0f;     // time is stopped

@@ -17,12 +17,15 @@ public class Projectile : MonoBehaviour
 
     private Rigidbody rb;
     private float t;
+    private AudioSource audioSource;
     
     // Start is called before the first frame update
     void Start()
     {
         t = time;
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.Play();
         rb.velocity = transform.forward * speed;
     }
 

@@ -12,12 +12,15 @@ public class GameController : MonoBehaviour
     public float scorePerTank;
     public int enemyStartingAmount;
     public int maxEnemiesAmount;
-
+    public UIController ui;
+    public AudioSource audioSource;
+    public float volumeLevel;
+    
     private int currentLives;
     private int currentEnemyAmount;
-    private GameObject player;
-    public UIController ui;
     
+    private GameObject player;
+
     public static GameController instance;
 
     private void Awake()
@@ -33,6 +36,7 @@ public class GameController : MonoBehaviour
         }
         
         player = spawner.SpawnPlayer();
+        audioSource.Play();
         
         score = 0f;
         currentLives = lives;
@@ -41,7 +45,9 @@ public class GameController : MonoBehaviour
         // set UI
         ui.setScore(score);
         ui.setLives(currentLives, lives);
-        
+
+        AudioListener.volume = volumeLevel;
+
     }
     
     // Update is called once per frame
@@ -57,6 +63,7 @@ public class GameController : MonoBehaviour
                 {
                     ui.HideRespawnScreen();
                     player = spawner.SpawnPlayer();
+                    audioSource.Play();
                     currentLives--;
                     ui.setLives(currentLives, lives);
                 }
@@ -66,8 +73,6 @@ public class GameController : MonoBehaviour
                 ui.ShowEndScreen(score);
             }
         }
- 
-        
     }
 
     public void EnemyDestroyed()
@@ -91,5 +96,6 @@ public class GameController : MonoBehaviour
         }
         ui.setHealth(current, max);
     }
+    
 
 }
