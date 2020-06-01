@@ -47,18 +47,26 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentLives > 0)
-        {
-            if (Input.GetButtonDown("Restart"))
+        if (player == null)
+        { 
+            if (currentLives > 0)
             {
-                if (player == null)
+                ui.ShowRespawnScreen();
+                
+                if (Input.GetButtonDown("Restart"))
                 {
+                    ui.HideRespawnScreen();
                     player = spawner.SpawnPlayer();
                     currentLives--;
                     ui.setLives(currentLives, lives);
                 }
-            }    
+            }
+            else 
+            {
+                ui.ShowEndScreen(score);
+            }
         }
+ 
         
     }
 

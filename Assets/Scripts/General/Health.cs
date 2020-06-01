@@ -24,6 +24,11 @@ public class Health : MonoBehaviour
         meshRenderers = GetComponentsInChildren<MeshRenderer>();
         originalColor = meshRenderers[0].material.color;    // all children same color
         originalEmissionColor = meshRenderers[0].material.GetColor("_EmissionColor");
+        
+        if (gameObject.CompareTag("Player"))
+        {
+            GameController.instance.SetHealth(currentHealth, maxHealth);
+        }
     }
 
     // Update is called once per frame
