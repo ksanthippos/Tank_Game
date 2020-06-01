@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 1608560956559658396}
   - component: {fileID: 1608560956559658395}
   m_Layer: 0
-  m_Name: Tank
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -287,8 +287,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 861cef6d831789f42ac29c8069c40e55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
-  damageFlashTime: 0
+  maxHealth: 100
+  damageFlashTime: 0.1
   explosion: {fileID: 95971568008635028, guid: 4582121760e22414fbd92c9dd38d7e94, type: 3}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &1608560956613974392

@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour
     private int currentLives;
     private int currentEnemyAmount;
     private GameObject player;
+    public UIController ui;
     
     public static GameController instance;
 
@@ -36,6 +37,11 @@ public class GameController : MonoBehaviour
         score = 0f;
         currentLives = lives;
         currentEnemyAmount = enemyStartingAmount;
+        
+        // set UI
+        ui.setScore(score);
+        ui.setLives(currentLives, lives);
+        
     }
     
     // Update is called once per frame
@@ -49,6 +55,7 @@ public class GameController : MonoBehaviour
                 {
                     player = spawner.SpawnPlayer();
                     currentLives--;
+                    ui.setLives(currentLives, lives);
                 }
             }    
         }
@@ -59,6 +66,8 @@ public class GameController : MonoBehaviour
     {
         spawner.SpawnEnemy();
         score += scorePerTank;
+        ui.setScore(score);
+        
         if (currentEnemyAmount < maxEnemiesAmount)
         {
             spawner.SpawnEnemy();
@@ -72,6 +81,7 @@ public class GameController : MonoBehaviour
         {
             current = 0f;
         }
+        ui.setHealth(current, max);
     }
 
 }

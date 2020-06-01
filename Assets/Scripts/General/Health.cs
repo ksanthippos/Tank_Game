@@ -5,7 +5,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
 
-    public float maxHealth = 3f;
+    public float maxHealth = 100;
     public float damageFlashTime;
     public GameObject explosion;
     public  Color damageColor = Color.red;
@@ -31,6 +31,12 @@ public class Health : MonoBehaviour
     {
         StartCoroutine(damageFlash());
         currentHealth -= damage;
+
+        if (gameObject.CompareTag("Player"))
+        {
+            GameController.instance.SetHealth(currentHealth, maxHealth);
+        }
+        
         if (currentHealth <= 0 && !dead)
         {
             dead = true;

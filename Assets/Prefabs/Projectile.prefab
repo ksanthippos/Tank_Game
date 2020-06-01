@@ -127,7 +127,7 @@ MonoBehaviour:
   speed: 10
   time: 1
   radius: 2
-  damage: 1
+  damage: 25
   shooterTag: 
   explosion: {fileID: 5006644853754915010, guid: 90de73ae85c4abb4c86d9d66727a12a5,
     type: 3}
